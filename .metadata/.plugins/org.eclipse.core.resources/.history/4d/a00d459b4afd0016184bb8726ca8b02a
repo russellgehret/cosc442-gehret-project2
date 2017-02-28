@@ -1,0 +1,47 @@
+package edu.towson.cis.cosc442.project2.vendingmachine;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+public class VendingMachineItemTest {
+
+	VendingMachineItem VendItem1;
+	VendingMachineItem VendItem2; 
+	VendingMachineItem VendItem3;
+	VendingMachineItem VendItem4;
+	@Before
+	public void setUp() throws Exception {
+		VendItem1 = new VendingMachineItem("Chips", .50);
+		VendItem2 = new VendingMachineItem("Candy", 0);
+		VendItem3 = new VendingMachineItem("Soda", -1.00);
+		VendItem4 = new VendingMachineItem("", 1.75);
+	}
+
+	
+
+	@Test
+	public void testVendingMachineItem() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetName() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetPrice() {
+		fail("Not yet implemented");
+	}
+	
+	@After
+	public void tearDown() throws Exception {
+		VendItem1 = null;
+		VendItem2 = null;
+		VendItem3 = null;
+		VendItem4 = null;
+	}
+}

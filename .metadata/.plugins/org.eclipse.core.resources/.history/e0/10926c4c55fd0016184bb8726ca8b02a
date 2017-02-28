@@ -1,0 +1,99 @@
+/**
+ * 
+ */
+package edu.towson.cis.cosc442.project2.vendingmachine;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+/**
+ * The unit test Class for VendingMachine.
+ */
+public class VendingMachineTest {
+	/** Declaring necessary test objects */
+	VendingMachineItem VendItem1;
+	VendingMachineItem VendItem2; 
+	VendingMachineItem VendItem3;
+	String code1 = "A";
+	String code2 = "1";
+	String code3 = "";
+	Double amount1 = 1.75;
+	Double amount2 = -1.25;
+	VendingMachineItem[] itemArray = new VendingMachineItem[4];
+	VendingMachine vend;
+	/**
+	 * Initializes the necessary test objects for the test cases to use.
+	 */
+	@Before
+	public void setUp() throws Exception {
+		VendItem1 = new VendingMachineItem("Chips", .50);
+		VendItem2 = new VendingMachineItem("Candy", 0);
+		vend = new VendingMachine();
+	}
+
+
+	@Test
+	public void testAddItem() {
+		vend.addItem(VendItem1, code1);
+	}
+	@Test (expected = Exception.class)
+	public void testAddItemException() {
+		vend.addItem(VendItem1, code1);
+		vend.addItem(VendItem2, code1);
+	}
+
+	@Test
+	public void testRemoveItem() {
+		vend.addItem(VendItem1, code1);
+		vend.removeItem(code1);
+	}
+	@Test (expected = Exception.class)
+	public void testRemoveItemException() {
+		vend.addItem(VendItem1, code1);
+		vend.removeItem(code1);
+		vend.removeItem(code1);
+	}
+	
+	@Test
+	public void testInsertMoney() {
+		vend.insertMoney(amount1);
+	}
+	@Test (expected = Exception.class)
+	public void testInsertMoneyException() {
+		vend.insertMoney(amount2);
+	}
+
+	@Test
+	public void testGetBalance() {
+		assertEquals(0, vend.getBalance(), 0.001);
+		vend.insertMoney(amount1);
+		assertEquals(amount1, vend.getBalance(), 0.001);
+	}
+
+
+	@Test
+	public void testMakePurchase() {
+		fail("Not yet implemented");
+	}
+
+
+	@Test
+	public void testReturnChange() {
+		vend.insertMoney(amount1);
+		assertEquals(amount1, vend.returnChange(), 0.001);
+		vend.insertMoney(amount1);
+		vend.addItem(VendItem1, code1);
+		vend.makePurchase(code1);
+		assertEquals((amount1 - .50), vend.returnChange(), 0.001);
+	}
+	/**
+	 * Cleans up test objects after a test case is executed.
+	 */
+	@After
+	public void tearDown() throws Exception {
+	}
+
+}
